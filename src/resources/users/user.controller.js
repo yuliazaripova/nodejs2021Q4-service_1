@@ -61,7 +61,7 @@ async function getUser(req, res, id) {
     }
   }
   
-  // eslint-disable-next-line consistent-return
+
   async function updateUser(req, res, id) {
     try {
     //   if (!isUUID(id)) {
@@ -79,7 +79,7 @@ async function getUser(req, res, id) {
           const updUser = await User.updateUser(id, { ...user, ...newUser });
   
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          return res.end(JSON.stringify(updUser));
+          res.end(JSON.stringify(updUser));
         }
    //   }
     } catch (error) {

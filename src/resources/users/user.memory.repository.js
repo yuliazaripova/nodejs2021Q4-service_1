@@ -5,8 +5,8 @@ const users = []
 
 function getAll() {
   return new Promise((resolve) => {
-    const _user = users.map(i => omitPassword(i));
-    resolve(_user);
+    const _users = users.map(i => omitPassword(i));
+    resolve(_users);
   });
 }
 
