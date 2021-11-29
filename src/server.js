@@ -1,7 +1,7 @@
 const http = require('http');
 const { PORT } = require('./common/config');
 const { METHOD } = require('./common/constants')
-const UserController = require('./resources/users1/user.controller')
+const UserController = require('./resources/users/user.controller')
 
 
 const server = http.createServer((req, res) => {
