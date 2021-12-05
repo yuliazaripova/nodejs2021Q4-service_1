@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const { omitPassword } = require('../../common/utils')
-
-const users = []
+const users = require('./users.db')
+const tasks = require('../tasks/tasks.db')
 
 function getAll() {
   return new Promise((resolve) => {
@@ -10,12 +10,15 @@ function getAll() {
   });
 }
 
-function findById(id) {
-    return new Promise((resolve) => {
-      const user = users.find((_user) => _user.id === id);
-      resolve(omitPassword(user));
-    });
+const findById = (id) => {
+  const user = users.find((_user) => _user.id === id);
+  return omitPassword(user)
 }
+
+// const createUser = (id) => {
+//   const user = users.find((_user) => _user.id === id);
+//   return omitPassword(user)
+// }
 
 function createUser(user) {
   return new Promise((resolve) => {
@@ -28,7 +31,8 @@ function createUser(user) {
 function updateUser(id, user) {
   return new Promise((resolve) => {
     const index = users.findIndex((_user) => _user.id === id);
-    users[index] = { id, ...user };
+    users[index] = { ...user, id };
+
     resolve(omitPassword(users[index]));
   });
 }
@@ -36,9 +40,15 @@ function updateUser(id, user) {
 function deleteUser(id) {
   return new Promise((resolve) => {
     const index = users.findIndex((i) => i.id === id);
+  
     if (index > -1) {
       users.splice(index, 1);
     }
+    tasks.map((task, key, array) => (
+      array[key].userId === id 
+      ? { ...array[key], userId: null }
+      : array[key]
+    ));
     resolve();
   });
 }
