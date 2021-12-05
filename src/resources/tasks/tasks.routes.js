@@ -1,4 +1,4 @@
-const Task = require('./tasks.memory.repository')
+const Task = require('./tasks.service')
 
 async function boardsRoutes (fastify) {
     fastify.get('/boards/:board/tasks', async (request, reply) => {

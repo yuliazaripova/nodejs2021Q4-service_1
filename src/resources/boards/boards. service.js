@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const boards = require('./boards.db');
 const tasks = require('../tasks/tasks.db')
-const {mutationFilter} = require('../../common/utils')
+const { mutationFilter } = require('../../common/utils')
 
 function getAll() {
   return new Promise((resolve) => {

@@ -1,5 +1,5 @@
 
-const User = require('./user.memory.repository')
+const User = require('./user.service')
 
 async function userRoutes (fastify) {
     fastify.get('/users', async (request, reply) => {
