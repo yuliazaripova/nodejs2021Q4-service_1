@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const boards = require('./boards.db');
 const tasks = require('../tasks/tasks.db')
+const {mutationFilter} = require('../../common/utils')
 
 function getAll() {
   return new Promise((resolve) => {
@@ -30,11 +31,7 @@ function updateBoard(id, board) {
     resolve(boards[index]);
   });
 }
-function mutationFilter(arr, cb) {
-  for (let l = arr.length - 1; l >= 0; l -= 1) {
-    if (!cb(arr[l])) arr.splice(l, 1);
-  }
-}
+
 function deleteBoard(id) {
   return new Promise((resolve) => {
     const index = boards.findIndex((i) => i.id === id);

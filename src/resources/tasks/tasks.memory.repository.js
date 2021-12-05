@@ -1,18 +1,16 @@
 const { v4: uuidv4 } = require('uuid');
-const tasks = require('./tasks.db')
+const tasks = require('./tasks.db');
 
 function getAll(boardId) {
   return new Promise((resolve) => {
-    const board = tasks.filter(i => i.boardId === boardId)
+    const board = tasks.filter(i => i.boardId === boardId);
     resolve(board);
   });
 }
 
 function findById(boardId, taskId) {
     return new Promise((resolve) => {
-    //  const board = tasks.filter(i => i.boardId === boardId)
-      const task = tasks.find(i => i.id === taskId)
-
+      const task = tasks.find(i => i.id === taskId);
       resolve(task);
     });
 }
